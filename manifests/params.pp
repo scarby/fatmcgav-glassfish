@@ -34,7 +34,7 @@ class glassfish::params {
   $glassfish_version             = '3.1.2.2'
 
   # Default Glassfish install parent directory.
-  $glassfish_parent_dir          = '/usr/local'
+  $glassfish_parent_dir          = '/opt'
 
   # Should Glassfish manage user accounts/groups?
   $glassfish_manage_accounts     = true
@@ -81,7 +81,7 @@ class glassfish::params {
   # Should this module manage Java installation?
   $glassfish_manage_java = true
   # JDK version: java-7-oracle, java-7-openjdk, java-6-oracle, java-6-openjdk
-  $glassfish_java_ver    = 'java-7-openjdk'
+  $glassfish_java_ver    = 'java-6-openjdk'
 
   # Set package names based on Operating System...
   case $::osfamily {
@@ -106,8 +106,13 @@ class glassfish::params {
   # Enable GMS?
   $glassfish_gms_enabled       = true
 
-  # Multicase params
+  # Multicast params
   $glassfish_multicast_port    = undef
   $glassfish_multicast_address = undef
-
+  
+  #JMS cluster config
+  $jms_cluster_type = 'none'
+  $jms_db_vendor = 'postgres'
+  $jms_db_user = 'gfuser'
+  $jms_db_password = 'gfpass'
 }
