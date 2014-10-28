@@ -1,0 +1,49 @@
+require 'puppet/provider/asadmin'
+require 'rubygems'
+require 'json'
+require 'net/http'
+Puppet::Type.type(:cluster_node).provide(:asadmin,
+                                   :parent => Puppet::Provider::Asadmin) do
+  desc "Glassfish JMS cluster support."
+
+  def create
+    # Start a new args array
+    args = Array.new
+    args << "configure-jms-cluster --passwordfile" << @resource[:dbpasswordfile]
+    args << "--clustertype" << @resource[:clustertype]
+    args << "--dbvendor" << @resource[:dbvendor]
+    args << "--dbuser" << @resource[:dbuser]
+    args << "--dburl" << @resource[:dburl]
+    # SSH details are optional
+    args << @resource[:clusterName]
+    
+    # Run the create command
+    asadmin_exec(args)
+
+  end
+
+
+  def exists?
+    #need to make a call to the glassfish domain rest URL to confirm cluster settings
+    
+    uri = URI(@resource[:hostname] + "/management/domain/configs/config/" + @resource[:clusterName] + "-config/availability-service/jms-availability.json")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request.basic_auth @resource[:gfuser], @resource[:gfpass]
+    response = http.request(request)
+    parsed = JSON.parse(response.body)
+    if  parsed['extraProperties']['entity']['dbUrl'] == @resource[:dburl] &&  parsed['extraProperties']['entity']['dbUsername'] == @resource[:dbuser]
+      then
+      return true
+    else
+      return false
+    end
+  end
+  def destroy
+    puts 'a cluster configuration cannot be removed'
+    return false
+  end
+end
