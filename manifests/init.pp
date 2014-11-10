@@ -111,7 +111,7 @@ class glassfish (
   $start_domain            = $glassfish::params::glassfish_start_domain,
   $tmp_dir                 = $glassfish::params::glassfish_tmp_dir,
   $user                    = $glassfish::params::glassfish_user,
-  $version               = $glassfish::params::glassfish_version) inherits glassfish::params {
+  $version                 = $glassfish::params::glassfish_version) inherits glassfish::params {
   #
   # # Calculate some vars based on passed parameters
   #
