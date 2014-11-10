@@ -132,7 +132,7 @@ class glassfish::install {
 #        require => Exec["move-glassfish${mjversion}"],
 #        before  => Anchor['glassfish::install::end']
 #      }
-#    }
+    }
     default   : {
       fail("Unrecognised Installation method ${glassfish::install_method}. Choose one of: 'package','zip'.")
     }
