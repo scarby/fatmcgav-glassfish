@@ -123,17 +123,6 @@ class glassfish::install {
         require => Exec['change-mode']
       }
 
-<<<<<<< HEAD
-      # Remove default domain1.
-#      file { 'remove-domain1':
-#        ensure  => absent,
-#        path    => "${glassfish::glassfish_dir}/glassfish/domains/domain1",
-#        force   => true,
-#        backup  => false,
-#        require => Exec["move-glassfish${mjversion}"],
-#        before  => Anchor['glassfish::install::end']
-#      }
-=======
       if $glassfish::remove_default_domain {
         # Remove default domain1.
         file { 'remove-domain1':
@@ -145,7 +134,6 @@ class glassfish::install {
           before  => Anchor['glassfish::install::end']
         }
       }
->>>>>>> 1f996f5535cad80225654ad3066048e3a5babd12
     }
     default   : {
       fail("Unrecognised Installation method ${glassfish::install_method}. Choose one of: 'package','zip'.")
