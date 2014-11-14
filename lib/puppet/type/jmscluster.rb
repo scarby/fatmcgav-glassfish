@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'uri'
 
 Puppet::Type.newtype(:jmscluster) do
   @doc = "Manage JMS cluster resources "
@@ -50,7 +51,7 @@ Puppet::Type.newtype(:jmscluster) do
   newparam(:dburl)do
   desc 'The jdbc url for the JMS message store database'
     validate do |value|
-          unless value =~ /^((jdbc):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)$/
+          unless value =~ /\A#{URI::regexp}\z/
              raise ArgumentError, "%s is not a valid jdbc url." % value
           end
         end
