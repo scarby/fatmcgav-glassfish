@@ -50,7 +50,7 @@ Puppet::Type.newtype(:jmscluster) do
   newparam(:dburl)do
   desc 'The jdbc url for the JMS message store database'
     validate do |value|
-          unless value =~ '((jdbc):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)'
+          unless value =~ /^((jdbc):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)$/
              raise ArgumentError, "%s is not a valid jdbc url." % value
           end
         end
