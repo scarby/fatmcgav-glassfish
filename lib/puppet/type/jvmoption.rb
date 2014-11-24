@@ -56,7 +56,7 @@ Puppet::Type.newtype(:jvmoption) do
     desc "The file containing the password for the user."
 
     validate do |value|
-      unless value =~ /^[\w-]+$/
+      unless value =~ /^\/.*$/
         raise ArgumentError, "%s does not exist" % value
       end
     end
