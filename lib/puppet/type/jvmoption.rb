@@ -56,8 +56,8 @@ Puppet::Type.newtype(:jvmoption) do
     desc "The file containing the password for the user."
 
     validate do |value|
-      unless File.exists? value
-        raise ArgumentError, "%s does not exists" % value
+      unless value =~ /^[\w-]+$/
+        raise ArgumentError, "%s does not exist" % value
       end
     end
   end
@@ -79,7 +79,11 @@ Puppet::Type.newtype(:jvmoption) do
   autorequire(:user) do
     self[:user]    
   end
-  
+
+  autorequire(:file) do
+    self(:passwordfile)
+  end
+ 
   # Autorequire the domain resource, based on portbase
   autorequire(:domain) do
     self.catalog.resources.select { |res|
