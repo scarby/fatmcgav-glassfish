@@ -81,7 +81,7 @@ Puppet::Type.newtype(:jvmoption) do
   end
 
   autorequire(:file) do
-    self(:passwordfile)
+    self[:passwordfile]
   end
  
   # Autorequire the domain resource, based on portbase
