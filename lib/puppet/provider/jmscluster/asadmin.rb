@@ -9,7 +9,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   def create
     # Start a new args array
     args = Array.new
-    args << "configure-jms-cluster --passwordfile" << @resource[:dbpasswordfile]
+    args << "configure-jms-cluster --passwordfile" << @resource[:passwordfile]
     args << "--clustertype" << @resource[:clustertype]
     args << "--dbvendor" << @resource[:dbvendor]
     args << "--dbuser" << @resource[:dbuser]
@@ -25,16 +25,23 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
 
   def exists?
     #need to make a call to the glassfish domain rest URL to confirm cluster settings
+    #we need to do this using curl for ubuntu rubt reasons (will update to check)
     
-    uri = URI("https://localhost:4848/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http.ssl_version = :SSLv3
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth @resource[:user], @resource[:password]
-    response = http.request(request)
-    parsed = JSON.parse(response.body)
+  #  uri = URI("https://localhost:4848/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json")
+  #  http = Net::HTTP.new(uri.host, uri.port)
+  #  http.use_ssl = true
+  #  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  #  http.ssl_version = :SSLv3
+  #  request = Net::HTTP::Get.new(uri.request_uri)
+  #  request.basic_auth @resource[:user], @resource[:password]
+  #  response = http.request(request)
+  #  parsed = JSON.parse(response.body)
+
+    uri = "https://localhost:4848/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json"
+    command = "curl -ssl3 --user admin:adminadmin --insecure " + uri
+    response = `#{command}`
+    parsed = JSON.parse(response)
+    
     if  parsed['extraProperties']['entity']['dbUrl'] == @resource[:dburl] &&  parsed['extraProperties']['entity']['dbUsername'] == @resource[:dbuser]
       then
       return true
