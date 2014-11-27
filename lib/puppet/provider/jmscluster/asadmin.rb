@@ -32,7 +32,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     
     request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth @resource[:gfuser], @resource[:gfpass]
+    request.basic_auth @resource[:user], @resource[:password]
     response = http.request(request)
     parsed = JSON.parse(response.body)
     if  parsed['extraProperties']['entity']['dbUrl'] == @resource[:dburl] &&  parsed['extraProperties']['entity']['dbUsername'] == @resource[:dbuser]
