@@ -33,7 +33,7 @@ define glassfish::create_asadmin_passfile (
   $path, 
   $user, 
   $asadmin_master_password = 'changeit', 
-  $asadmin_password = 'adminadmin'
+  $asadmin_password = 'adminadmin',
   $asadmin_jms_password = 'vidispine',
 ) {
   # Create the required passfile

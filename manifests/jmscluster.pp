@@ -6,7 +6,8 @@ define glassfish::jmscluster (
   $clusterName      = $name,
   $ensure           = 'present',
   $asadmin_user     = $glassfish::asadmin_user,
-  $asadmin_passfile = $glassfish::asadmin_passfile,) {
+  $asadmin_passfile = $glassfish::asadmin_passfile,
+) {
   
 
   # Create the cluster
