@@ -1,5 +1,4 @@
 define glassfish::jmscluster (
-  $dbpassword       = '',
   $clustertype      = 'enhanced',
   $dbvendor         = 'postgressql',
   $dbuser           = '',

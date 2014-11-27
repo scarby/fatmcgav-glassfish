@@ -77,23 +77,23 @@ Puppet::Type.newtype(:jmscluster) do
   end
   
   
-#  # Autorequire the user running command
-#  autorequire(:user) do
-#    self[:user]
-#  end
+  # Autorequire the user running command
+  autorequire(:user) do
+    self[:user]
+  end
   
-#  # Autorequire the password file
-#  autorequire(:file) do
-#    self[:passwordfile]
-#  end
+  # Autorequire the password file
+  autorequire(:file) do
+    self[:passwordfile]
+  end
   
-#  # Autorequire the relevant domain
-#  autorequire(:domain) do
-#    self.catalog.resources.select { |res|
-#      next unless res.type == :domain
-#      res if res[:portbase] == self[:portbase]
-#    }.collect { |res|
-#      res[:name]
-#    }
-#  end
+  # Autorequire the relevant domain
+  autorequire(:domain) do
+    self.catalog.resources.select { |res|
+      next unless res.type == :domain
+      res if res[:portbase] == self[:portbase]
+    }.collect { |res|
+      res[:name]
+    }
+  end
 end

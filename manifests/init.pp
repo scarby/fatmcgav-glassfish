@@ -92,6 +92,7 @@ class glassfish (
   $asadmin_passfile        = $glassfish::params::glassfish_asadmin_passfile,
   $asadmin_master_password = $glassfish::params::glassfish_asadmin_master_password,
   $asadmin_password        = $glassfish::params::glassfish_asadmin_password,
+  $asadmin_jms_password    = $glassfish::params::asadmin_jms_password
   $create_domain           = $glassfish::params::glassfish_create_domain,
   $create_service          = $glassfish::params::glassfish_create_service,
   $create_passfile         = $glassfish::params::glassfish_create_passfile,
@@ -115,7 +116,8 @@ class glassfish (
   $start_domain            = $glassfish::params::glassfish_start_domain,
   $tmp_dir                 = $glassfish::params::glassfish_tmp_dir,
   $user                    = $glassfish::params::glassfish_user,
-  $version                 = $glassfish::params::glassfish_version) inherits glassfish::params {
+  $version                 = $glassfish::params::glassfish_version
+) inherits glassfish::params {
   #
   ## Calculate some vars based on passed parameters
   #
@@ -163,6 +165,7 @@ class glassfish (
     glassfish::create_asadmin_passfile { "${user}_asadmin_passfile":
       asadmin_master_password => $asadmin_master_password,
       asadmin_password        => $asadmin_password,
+      asadmin_jms_password    => $asadmin_jms_password,
       group                   => $group,
       path                    => $asadmin_passfile,
       user                    => $user

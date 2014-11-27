@@ -54,6 +54,7 @@ class glassfish::params {
   $glassfish_asadmin_master_password = 'changeit'
   # Default Glassfish asadmin password
   $glassfish_asadmin_password    = 'adminadmin'
+  $asadmin_jms_password = undef
   # Should a passfile be created?
   $glassfish_create_passfile     = true
 
