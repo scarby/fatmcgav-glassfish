@@ -29,10 +29,10 @@
 # Copyright 2014 Gavin Williams, unless otherwise noted.
 #
 define glassfish::create_asadmin_passfile (
-  $group, 
-  $path, 
-  $user, 
-  $asadmin_master_password = 'changeit', 
+  $group,
+  $path,
+  $user,
+  $asadmin_master_password = 'changeit',
   $asadmin_password = 'adminadmin',
   $asadmin_jms_password = 'vidispine',
 ) {

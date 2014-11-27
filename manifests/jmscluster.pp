@@ -1,3 +1,4 @@
+#alter a glassfish clusters message queue - more docs to follow
 define glassfish::jmscluster (
   $clustertype      = 'enhanced',
   $dbvendor         = 'postgressql',
@@ -12,13 +13,13 @@ define glassfish::jmscluster (
 
   # Create the cluster
   jmscluster { $clusterName:
-    ensure           => $ensure,
-    clustertype      => $clustertype,
-    dbvendor         => $dbvendor,
-    user             => asadmin_user,
-    passwordfile     => $asadmin_passfile,
-    dbuser           => $dbuser,
-    dburl            => $dburl,
+    ensure       => $ensure,
+    clustertype  => $clustertype,
+    dbvendor     => $dbvendor,
+    user         => asadmin_user,
+    passwordfile => $asadmin_passfile,
+    dbuser       => $dbuser,
+    dburl        => $dburl,
 
   }
 
