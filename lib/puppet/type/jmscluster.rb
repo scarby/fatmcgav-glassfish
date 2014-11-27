@@ -75,6 +75,19 @@ Puppet::Type.newtype(:jmscluster) do
   validate do
     raise Puppet::Error, 'Cluster type is required' unless self[:clustertype]
   end
+
+  newparam(:user) do
+    desc "The user to run the command as."
+
+    validate do |value|
+      unless Puppet.features.root?
+        self.fail "Only root can execute commands as other users"
+      end
+      unless value =~ /^[\w-]+$/
+         raise ArgumentError, "%s is not a valid user name." % value
+      end
+    end
+  end
   
   
   # Autorequire the user running command
