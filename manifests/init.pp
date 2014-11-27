@@ -92,7 +92,7 @@ class glassfish (
   $asadmin_passfile        = $glassfish::params::glassfish_asadmin_passfile,
   $asadmin_master_password = $glassfish::params::glassfish_asadmin_master_password,
   $asadmin_password        = $glassfish::params::glassfish_asadmin_password,
-  $asadmin_jms_password    = $glassfish::params::asadmin_jms_password
+  $asadmin_jms_password    = $glassfish::params::asadmin_jms_password,
   $create_domain           = $glassfish::params::glassfish_create_domain,
   $create_service          = $glassfish::params::glassfish_create_service,
   $create_passfile         = $glassfish::params::glassfish_create_passfile,
