@@ -88,6 +88,16 @@ newparam(:dasport) do
   validate do |value|
     raise ArgumentError, "%s is not a valid das port." % value unless value =~ /^\d{4,5}$/
   end  
+end
+newparam(:asadminuser) do
+  desc "The internal Glassfish user asadmin uses. Default: admin"
+  defaultto 'admin'
+
+  validate do |value|
+    unless value =~ /^[\w-]+$/
+        raise ArgumentError, "%s is not a valid asadmin user name." % value
+    end
+  end
 end 
   # Validate mandatory params
   validate do
