@@ -8,6 +8,7 @@ define glassfish::jmscluster (
   $ensure           = 'present',
   $asadmin_user     = $glassfish::asadmin_user,
   $asadmin_passfile = $glassfish::asadmin_passfile,
+  $asadmin_password = $glassfish::asadmin_password
 ) {
   
 

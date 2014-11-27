@@ -66,6 +66,16 @@ Puppet::Type.newtype(:jmscluster) do
       end
     end
   end  
+
+newparam(:password) do
+    desc "The file containing the password for the user."
+
+    validate do |value|
+      unless  value != ''
+        raise ArgumentError, "%s does not exists" % value
+      end
+    end
+  end
    
   # Validate mandatory params
   validate do
