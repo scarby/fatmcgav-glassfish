@@ -30,7 +30,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    
+    http.ssl_version = :SSLv3
     request = Net::HTTP::Get.new(uri.request_uri)
     request.basic_auth @resource[:user], @resource[:password]
     response = http.request(request)
