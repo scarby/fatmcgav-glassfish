@@ -6,7 +6,7 @@ Puppet::Type.newtype(:jmscluster) do
 
   ensurable
 
-  newparam(:clusterName) do
+  newparam(:name) do
     desc "The JMS cluster name."
     isnamevar
     

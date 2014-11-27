@@ -15,7 +15,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     args << "--dbuser" << @resource[:dbuser]
     args << "--dburl" << @resource[:dburl]
     # SSH details are optional
-    args << @resource[:clusterName]
+    args << @resource[:name]
     
     # Run the create command
     asadmin_exec(args)
@@ -26,7 +26,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   def exists?
     #need to make a call to the glassfish domain rest URL to confirm cluster settings
     
-    uri = URI("https://localhost:4848/management/domain/configs/config/" + @resource[:clusterName] + "-config/availability-service/jms-availability.json")
+    uri = URI("https://localhost:4848/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
