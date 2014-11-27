@@ -2,7 +2,7 @@ require 'puppet/provider/asadmin'
 require 'rubygems'
 require 'json'
 require 'net/http'
-Puppet::Type.type(:cluster_node).provide(:asadmin,
+Puppet::Type.type(:jmscluster).provide(:asadmin,
                                    :parent => Puppet::Provider::Asadmin) do
   desc "Glassfish JMS cluster support."
 
@@ -26,7 +26,7 @@ Puppet::Type.type(:cluster_node).provide(:asadmin,
   def exists?
     #need to make a call to the glassfish domain rest URL to confirm cluster settings
     
-    uri = URI(@resource[:hostname] + "/management/domain/configs/config/" + @resource[:clusterName] + "-config/availability-service/jms-availability.json")
+    uri = URI(https://localhost:4848/management/domain/configs/config/" + @resource[:clusterName] + "-config/availability-service/jms-availability.json")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
