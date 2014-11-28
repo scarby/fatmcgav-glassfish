@@ -110,6 +110,7 @@ end
 
   newparam(:user) do
     desc "The user to run the command as."
+    defaultto 'glassfish'
 
     validate do |value|
       unless Puppet.features.root?
