@@ -19,7 +19,7 @@ define glassfish::jmscluster (
     dbvendor     => $dbvendor,
     user         => $asadmin_user,
     passwordfile => $asadmin_passfile,
-    password     => $asadmin_password
+    password     => $asadmin_password,
     dbuser       => $dbuser,
     dburl        => $dburl,
 
