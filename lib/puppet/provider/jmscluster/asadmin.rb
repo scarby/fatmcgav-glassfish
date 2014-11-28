@@ -9,7 +9,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   def create
     # Start a new args array
     args = Array.new
-    args << "configure-jms-cluster --passwordfile" << @resource[:passwordfile]
+    args << "configure-jms-cluster"
     args << "--clustertype" << @resource[:clustertype]
     args << "--dbvendor" << @resource[:dbvendor]
     args << "--dbuser" << @resource[:dbuser]
@@ -41,7 +41,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     command = "curl -ssl3 --user admin:adminadmin --insecure " + uri
     response = `#{command}`
     parsed = JSON.parse(response)
-    
+
     if  parsed['extraProperties']['entity']['dbUrl'] == @resource[:dburl] &&  parsed['extraProperties']['entity']['dbUsername'] == @resource[:dbuser]
       then
       return true
