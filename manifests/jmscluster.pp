@@ -6,7 +6,7 @@ define glassfish::jmscluster (
   $dburl            = 'jdbc:://localhost/',
   $clusterName      = $name,
   $ensure           = 'present',
-  $asadmin_user     = $glassfish::asadmin_user,
+  $asadmin_user     = $glassfish::user,
   $asadmin_passfile = $glassfish::asadmin_passfile,
   $asadmin_password = $glassfish::asadmin_password
 ) {
