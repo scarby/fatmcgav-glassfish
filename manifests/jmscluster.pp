@@ -17,8 +17,9 @@ define glassfish::jmscluster (
     ensure       => $ensure,
     clustertype  => $clustertype,
     dbvendor     => $dbvendor,
-    user         => asadmin_user,
+    user         => $asadmin_user,
     passwordfile => $asadmin_passfile,
+    password     => $asadmin_password
     dbuser       => $dbuser,
     dburl        => $dburl,
 
