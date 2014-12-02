@@ -14,7 +14,6 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     args << "--dbvendor" << @resource[:dbvendor]
     args << "--dbuser" << @resource[:dbuser]
     args << "--dburl" << @resource[:dburl]
-    args << "--property" << "imq.persist.jdbc.postgresql.opendburl=" + @resource[:dburl]
     # SSH details are optional
     args << @resource[:name]
     
