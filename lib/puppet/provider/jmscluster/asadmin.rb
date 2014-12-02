@@ -8,7 +8,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
 
   def create
     imqpersisturl = "imq.persist.jdbc.postgresql.opendburl=" + @resource[:dburl].gsub(':', '\\:')
-    imqpersisturl = imqpersisturl.gsub(':', '\\:')
+    imqpersisturl = "'" + imqpersisturl.gsub(':', '\\:') + "'"
     # Start a new args array
     args = Array.new
     args << "configure-jms-cluster"
