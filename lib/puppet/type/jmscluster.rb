@@ -21,7 +21,7 @@ Puppet::Type.newtype(:jmscluster) do
     desc 'The jms cluster type valid variables are conventional|enhanced'
      validate do |value|
        unless value == 'conventional' || value == 'enhanced'
-         raise ArguementError, '%s Is not a valid clusterType - permitted variables are conventional or enhanced'
+         raise ArgumentError, '%s Is not a valid clusterType - permitted variables are conventional or enhanced'
        end
      end
   end
@@ -29,7 +29,7 @@ Puppet::Type.newtype(:jmscluster) do
   desc 'The jms config store type valid variables are masterbroker|shareddb'
    validate do |value|
      unless value == 'masterbroker' || value == 'shareddb'
-       raise ArguementError, '%s Is not a valid configstoretype - permitted variables are masterbroker or shareddb'
+       raise ArgumentError, '%s Is not a valid configstoretype - permitted variables are masterbroker or shareddb'
      end
    end
   end
@@ -37,8 +37,8 @@ Puppet::Type.newtype(:jmscluster) do
   newparam(:dbvendor)do
   desc 'The dbvendor for the JMS message store valid inputs are postgressql|mysql|oracle'
    validate do |value|
-     unless value == 'postgressql' || value == 'mysql' || value == 'oracle'
-       raise ArguementError, '%s Is not a valid dbvendor - permitted variables are postgressql|mysql|oracle'
+     unless value == 'postgressql' || value == 'mysql' || value == 'oracle' || 'postgresql'
+       raise ArgumentError, '%s Is not a valid dbvendor - permitted variables are postgressql|mysql|oracle'
      end
    end
   end
