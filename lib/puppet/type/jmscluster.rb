@@ -37,7 +37,7 @@ Puppet::Type.newtype(:jmscluster) do
   newparam(:dbvendor)do
   desc 'The dbvendor for the JMS message store valid inputs are postgressql|mysql|oracle'
    validate do |value|
-     unless value == 'postgressql' || value == 'mysql' || value == 'oracle' || 'postgresql'
+     unless value == 'postgressql' || value == 'mysql' || value == 'oracle' || value == 'postgresql'
        raise ArgumentError, '%s Is not a valid dbvendor - permitted variables are postgressql|mysql|oracle'
      end
    end
