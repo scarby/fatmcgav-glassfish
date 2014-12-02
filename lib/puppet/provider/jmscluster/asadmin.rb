@@ -20,6 +20,15 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
     # Run the create command
     asadmin_exec(args)
 
+    #we now need to fix a really annoying typo in 3.1.X
+    if @resource[:dbvendor] == 'postgressql' then
+      asadmin_exec(['stop domain', @resource[:domain]])
+      command = "sed -i 's/postgressql/postgresql'" +  @resource[:parent_dir] + "/" + @resource[:install_dir] + "/glassfish/domains/" + @resource[:domain] + "/config/domain.xml"
+      Puppet.debug("replacing incorrect config -- #{command}")
+      sed = `#{command}`
+      asadmin_exec(['start domain', @resource[:domain]])
+    end
+
   end
 
 

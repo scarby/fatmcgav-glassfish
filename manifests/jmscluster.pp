@@ -8,7 +8,10 @@ define glassfish::jmscluster (
   $ensure           = 'present',
   $asadmin_user     = $glassfish::user,
   $asadmin_passfile = $glassfish::asadmin_passfile,
-  $asadmin_password = $glassfish::asadmin_password
+  $asadmin_password = $glassfish::asadmin_password,
+  $parent_dir       = $glassfish::parent_dir,
+  $install_dir      = $glassfish::install_dir,
+  $domain           = $glassfish::domain_name,
 ) {
   
 
@@ -22,6 +25,9 @@ define glassfish::jmscluster (
     password     => $asadmin_password,
     dbuser       => $dbuser,
     dburl        => $dburl,
+    parent_dir   => $parent_dir,
+    install_dir  => $install_dir,
+    domain       => $domain,
 
   }
 

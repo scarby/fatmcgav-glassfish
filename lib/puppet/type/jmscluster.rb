@@ -67,7 +67,7 @@ Puppet::Type.newtype(:jmscluster) do
     end
   end  
 
-newparam(:password) do
+  newparam(:password) do
     desc "The file containing the password for the user."
 
     validate do |value|
@@ -121,6 +121,34 @@ end
       end
     end
   end
+
+  newparam(:domain) do
+    desc "The domain within which the cluster exists."
+
+    validate do |value|
+      unless  value != ''
+        raise ArgumentError, "%s does not exists" % value
+      end
+    end
+  end
+  newparam(:parent_dir) do
+    desc "The parent dir for the glassfish installation"
+
+    validate do |value|
+      unless  value != ''
+        raise ArgumentError, "%s does not exists" % value
+      end
+    end
+  end
+  newparam(:install_dir) do
+    desc "The glassfish installation directory"
+
+    validate do |value|
+      unless  value != ''
+        raise ArgumentError, "%s does not exists" % value
+      end
+    end
+  end
   
   
   # Autorequire the user running command
@@ -134,12 +162,12 @@ end
   end
   
   # Autorequire the relevant domain
-#  autorequire(:domain) do
-#    self.catalog.resources.select { |res|
-#      next unless res.type == :domain
-#      res if res[:portbase] == self[:portbase]
-#    }.collect { |res|
-#      res[:name]
-#    }
-#  end
+  autorequire(:domain) do
+    self.catalog.resources.select { |res|
+      next unless res.type == :domain
+      res if res[:portbase] == self[:portbase]
+    }.collect { |res|
+      res[:name]
+    }
+  end
 end
