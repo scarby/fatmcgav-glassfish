@@ -7,7 +7,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   desc "Glassfish JMS cluster support."
 
   def create
-    imqpersisturl = "imq.persist.jdbc.postgresql.opendburl=" + @resource[:dburl].gsub!(':', '\\:')
+    imqpersisturl = "imq.persist.jdbc.postgresql.opendburl=" + @resource[:dburl].gsub!(':', '\\\\:')
     # Start a new args array
     args = Array.new
     args << "configure-jms-cluster"
