@@ -9,6 +9,7 @@ Puppet::Provider::Asadmin) do
     args << "--target" << @resource[:target] if @resource[:target]
     args << "--contextroot" << @resource[:contextroot] if @resource[:contextroot]
     args << "--name" << @resource[:name]
+    args << "--property" <<  "compatibility=v2"
     args << @resource[:source]
 
     asadmin_exec(args)
