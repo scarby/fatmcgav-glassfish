@@ -18,6 +18,11 @@ Puppet::Type.newtype(:application) do
     #defaultto ""
   end
 
+  newparam(:property) do
+    desc "a property we can set"
+    #defaultto ""
+  end
+
   newparam(:source) do
     desc "The application file to deploy."
   end
