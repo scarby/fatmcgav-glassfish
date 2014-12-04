@@ -72,7 +72,7 @@ Puppet::Type.newtype(:customresource) do
     desc "The file containing the password for the user."
 
     validate do |value|
-      unless File.exists? value
+      unless value =~ /^\/.*$/
         raise ArgumentError, "%s does not exists" % value
       end
     end
@@ -94,6 +94,10 @@ Puppet::Type.newtype(:customresource) do
   # Autorequire the user running command
   autorequire(:user) do
     self[:user]    
+  end
+
+  autorequire(:file) do
+    self[:passwordfile]
   end
   
   # Autorequire the domain resource, based on portbase
