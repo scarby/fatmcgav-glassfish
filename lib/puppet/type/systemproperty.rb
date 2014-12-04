@@ -60,7 +60,7 @@ Puppet::Type.newtype(:systemproperty) do
     desc "The file containing the password for the user."
 
     validate do |value|
-      unless File.exists? value
+      unless value =~ /^\/.*$/
         raise ArgumentError, "%s does not exists" % value
       end
     end

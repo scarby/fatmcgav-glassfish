@@ -53,8 +53,8 @@ Puppet::Type.newtype(:set) do
     desc "The file containing the password for the user."
 
     validate do |value|
-      unless File.exists? value
-        raise ArgumentError, "%s does not exists" % value
+      unless value =~ /^\/.*$/
+        raise ArgumentError, "%s does not exist" % value
       end
     end
   end
@@ -81,7 +81,7 @@ Puppet::Type.newtype(:set) do
   autorequire(:user) do
     self[:user]
   end
-  
+ 
   # Autorequire the password file
   autorequire(:file) do
     self[:passwordfile]
