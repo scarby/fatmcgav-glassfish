@@ -69,7 +69,7 @@ define glassfish::create_cluster (
     user             => $cluster_user,
     asadminuser      => $asadmin_user,
     passwordfile     => $asadmin_passfile,
-    dashost          => $das_host
+    dashost          => $das_host,
     dasport          => $das_port,
     gmsenabled       => $gms_enabled,
     multicastport    => $gms_multicast_port,
