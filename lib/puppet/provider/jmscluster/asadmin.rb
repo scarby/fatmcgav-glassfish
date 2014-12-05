@@ -49,7 +49,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   #  parsed = JSON.parse(response.body)
 
     uri = "https://" + @resource[:dashost] + ":" +  @resource[:dasport] + "/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json"
-    command = "curl -ssl3 --user " + @resource[:user] + ":" + @resource[:password] +" --insecure " + uri
+    command = "curl -ssl3 --user " + @resource[:asadminuser] + ":" + @resource[:password] +" --insecure " + uri
     response = `#{command}`
     parsed = JSON.parse(response)
 
