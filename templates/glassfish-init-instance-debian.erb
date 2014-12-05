@@ -9,7 +9,7 @@
 # Short-Description:	Oracle Glassfish Java EE Application Server ver. <%= scope.lookupvar('glassfish::glassfish_version') %>
 ### END INIT INFO
 
-INSTANCE="<%= @instance_name %>"
+INSTANCE="<%= scope.lookupvar('glassfish::instance_name') %>"
 NODE="<%= @node_name %>"
 PWFILE="<%= @asadmin_passfile %>"
 USER=<%= @runuser %>
