@@ -38,7 +38,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   def exists?
     #need to make a call to the glassfish domain rest URL to confirm cluster settings
     #we need to do this using curl for ubuntu ruby reasons (will update to check)
-  #  uri = URI("https://" + @resource[:dashost] + ":" @resource[:dasport] "/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json")
+  #  uri = URI("https://" + @resource[:dashost] + ":" + @resource[:dasport] + "/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json")
   #  http = Net::HTTP.new(uri.host, uri.port)
   #  http.use_ssl = true
   #  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -48,7 +48,7 @@ Puppet::Type.type(:jmscluster).provide(:asadmin,
   #  response = http.request(request)
   #  parsed = JSON.parse(response.body)
 
-    uri = "https://" + @resource[:dashost] + ":" @resource[:dasport] "/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json"
+    uri = "https://" + @resource[:dashost] + ":" +  @resource[:dasport] + "/management/domain/configs/config/" + @resource[:name] + "-config/availability-service/jms-availability.json"
     command = "curl -ssl3 --user " + @resource[:user] + ":" + @resource[:password] +" --insecure " + uri
     response = `#{command}`
     parsed = JSON.parse(response)
