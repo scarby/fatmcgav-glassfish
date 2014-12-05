@@ -47,6 +47,7 @@ define glassfish::create_cluster (
   $asadmin_passfile      = $glassfish::asadmin_passfile,
   $cluster_name          = $name,
   $cluster_user          = $glassfish::user,
+  $das_host              = 'localhost',
   $das_port              = '4848',
   $ensure                = present,
   $gms_enabled           = $glassfish::gms_enabled,
@@ -68,6 +69,7 @@ define glassfish::create_cluster (
     user             => $cluster_user,
     asadminuser      => $asadmin_user,
     passwordfile     => $asadmin_passfile,
+    dashost          => $das_host
     dasport          => $das_port,
     gmsenabled       => $gms_enabled,
     multicastport    => $gms_multicast_port,

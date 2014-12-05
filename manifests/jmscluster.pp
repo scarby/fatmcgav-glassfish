@@ -12,6 +12,7 @@ define glassfish::jmscluster (
   $parent_dir       = $glassfish::parent_dir,
   $install_dir      = $glassfish::install_dir,
   $domain           = $glassfish::domain_name,
+  $das_host         = 'localhost'
 ) {
   
 
@@ -28,7 +29,7 @@ define glassfish::jmscluster (
     parent_dir   => $parent_dir,
     install_dir  => $install_dir,
     domain       => $domain,
-
+    $dashost     => $das_host
   }
 
 }
