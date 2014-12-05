@@ -59,6 +59,20 @@ Puppet::Type.newtype(:set) do
     end
   end
 
+newparam(:dashost) do
+  desc "The Glassfish DAS hostname."
+  defaultto 'localhost'
+end
+  
+newparam(:dasport) do
+  desc "The Glassfish DAS port. Default: 4848"
+  defaultto '4848'
+
+  validate do |value|
+    raise ArgumentError, "%s is not a valid das port." % value unless value =~ /^\d{4,5}$/
+  end  
+end
+
   newparam(:user) do
     desc "The user to run the command as."
 
