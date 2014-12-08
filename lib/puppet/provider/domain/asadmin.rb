@@ -38,7 +38,12 @@ Puppet::Type.type(:domain).provide(:asadmin,
     asadmin_exec(["list-domains"]).each do |line|
       domain = line.split(" ")[0] if line.match(/running/) # Glassfish > 3.0.1
       domain = line.split(" ")[1] if line.match(/^Name:\ /) # Glassfish =< 3.0.1
-      return true if @resource[:name] == domain
+      if @resource[:name] == domain then 
+        if line.match(/not running/) && @resource[:startoncreate] == :true then
+          asadmin_exec(['start-domain', @resource[:name]])
+        end
+        return true
+      end
     end
     return false
   end
