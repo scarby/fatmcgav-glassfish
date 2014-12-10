@@ -115,5 +115,4 @@ class glassfish::params {
   # Multicase params
   $glassfish_multicast_port    = undef
   $glassfish_multicast_address = undef
-
 }
